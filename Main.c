@@ -154,7 +154,7 @@ void printPacient_Order(List_Consultas* lista, Consulta consulta){
   Consulta consultas[size_lista(lista)]; // Criando uma lista auxiliar para as structs Consulta
   FILE *file = fopen("consultas.bin","rb"); 
   
-  int cont = 0,r=0;
+  int cont = 0,i=0,j=0,z=0,r=0;
   char aux[80];
  
   while(fread(&consulta,sizeof(Consulta),1,file) == 1){ // Lendo o arquivo
@@ -163,9 +163,9 @@ void printPacient_Order(List_Consultas* lista, Consulta consulta){
     cont++; // Contador da Array
   }
     
-  for (int i = 0; i < size_lista(lista); i++) // Ordenando as consultas por ordem alfabética
+  for (i = 0; i < size_lista(lista); i++) // Ordenando as consultas por ordem alfabética
   {
-    for (int j = i+1; j < size_lista(lista); j++)
+    for (j = i+1; j < size_lista(lista); j++)
     {
       r = strcmp(consultas[i].nome_paciente,consultas[j].nome_paciente); // Comparando o atual com o próximo
       if(r > 0){ // Caso retorne 0 quer dizer que o nome atual vem depois do próximo ( No caso da ordem alfabética )
@@ -177,7 +177,7 @@ void printPacient_Order(List_Consultas* lista, Consulta consulta){
     
   }
   
-  for (int z = 0; z < size_lista(lista); z++) // Printando todas as consultas com o novo resultado da ordem
+  for (z = 0; z < size_lista(lista); z++) // Printando todas as consultas com o novo resultado da ordem
   {
     printf("\nConsulta\n\tPaciente: %s\n\tData: %s\n\tCRM(Médico): %i\n\tAnotações: %s\n",consultas[z].nome_paciente,consultas[z].data,consultas[z].crm_medico,consultas[z].anotacoes);
   }
